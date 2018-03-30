@@ -69,7 +69,10 @@
         <div class="app">
             <h1 class="app__header">Auto-Publicist</h1>
             <p class="app__content"><span data-fix data-upper></span> <span data-fill></span> <span data-fill></span> about <span data-fix></span> <span data-fill></span> <span data-fill></span> <span data-fill></span> to <span data-fill></span> <span data-update></span> <span data-fill></span>.</p>
-            <p class="app__footer">App Copyright &copy; 2018 Ryan Burst<br />Content via <a href="https://electricliterature.com/how-to-write-elevator-pitch-novel-publicity-infographic-a8ec74ecf7ce" target="_blank">Electric Literature</a></p>
+            <p class="app__footer">
+                App Copyright &copy; 2018 <a href="https://www.twitter.com/ryanburst" target="_blank">Ryan Burst</a><br />
+                Content via <a href="https://electricliterature.com/how-to-write-elevator-pitch-novel-publicity-infographic-a8ec74ecf7ce" target="_blank">Electric Literature</a>
+            </p>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -89,9 +92,12 @@
             var her = ["daughter's","mother's","widow's","woman's","mistress's"];
 
             $(document).ready(function() {
+                // Fill all the blanks
                 $('[data-fill]').each(function(index) {
                     $(this).text(picks[index][Math.floor(Math.random() * picks[index].length)]);
                 });
+                
+                // Set proper a/an cases
                 $('[data-fix]').each(function() {
                     var $this      = $(this);
                     var nextLetter = $this.next().text().substring(0,1);
@@ -101,13 +107,12 @@
                     $this.text(result);
                 });
 
-
+                // Pick proper use case of his/her/their
                 var filled = $('[data-fill]:eq(3)').text();
                 var update = 'their';
                 if (his.indexOf(filled) > -1 || her.indexOf(filled) > -1) {
                     update = his.indexOf(filled) > -1 ? 'his' : 'her';
                 }
-
                 $('[data-update]').text(update);
             });
         </script>
