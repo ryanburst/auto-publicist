@@ -152,8 +152,6 @@
                     update = his.indexOf(filled) > -1 ? 'his' : 'her';
                 }
                 $('[data-update]').text(update);
-
-                ga('send', 'event', 'Pitch', 'generate', 'Launch');
             }
 
             $(document).ready(function() {
@@ -161,6 +159,7 @@
 
                 $('body').on('click','.content__button',function() {
                     generate();
+                    ga('send', 'event', 'Pitch', 'generate', 'Launch');
                 });
             });
         </script>
