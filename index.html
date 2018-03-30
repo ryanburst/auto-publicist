@@ -49,6 +49,42 @@
                 color: #aaa;
                 text-align: center;
             }
+            .content__generate {
+                margin-top: 1.5em;
+                text-align: center;
+            }
+            .content__button {
+                box-sizing: border-box;
+                position: relative;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                cursor: pointer;
+                outline: 0;
+                border: none;
+                -webkit-tap-highlight-color: transparent;
+                display: inline-block;
+                white-space: nowrap;
+                text-decoration: none;
+                vertical-align: baseline;
+                background-color: #fff;
+                text-align: center;
+                margin: 0;
+                min-width: 88px;
+                font-family: 'Raleway', sans-serif;
+                font-size: 18px;
+                line-height: 3;
+                padding: 0 20px;
+                border-radius: 2px;
+                box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+                transform: translate3d(0,0,0);
+                transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+            }
+            .content__button:hover,
+            .content__button:active {
+                box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+            }
             a {
                 color: #64B5F6;
             }
@@ -68,7 +104,10 @@
     <body>
         <div class="app">
             <h1 class="app__header">Auto-Publicist</h1>
-            <p class="app__content"><span data-fix data-upper></span> <span data-fill></span> <span data-fill></span> about <span data-fix></span> <span data-fill></span> <span data-fill></span> <span data-fill></span> to <span data-fill></span> <span data-update></span> <span data-fill></span>.</p>
+            <div class="app__content content">
+                <p class="content__pitch"><span data-fix data-upper></span> <span data-fill></span> <span data-fill></span> about <span data-fix></span> <span data-fill></span> <span data-fill></span> <span data-fill></span> to <span data-fill></span> <span data-update></span> <span data-fill></span>.</p>
+                <p class="content__generate"><button class="content__button">Pitch Me Again!</button>
+            </div>
             <p class="app__footer">
                 App Copyright &copy; 2018 <a href="https://www.twitter.com/ryanburst" target="_blank">Ryan Burst</a><br />
                 Content via <a href="https://electricliterature.com/how-to-write-elevator-pitch-novel-publicity-infographic-a8ec74ecf7ce" target="_blank">Electric Literature</a>
@@ -90,12 +129,12 @@
             var his = ["man's"];
             var her = ["daughter's","mother's","widow's","woman's","mistress's"];
 
-            $(document).ready(function() {
+            function generate() {
                 // Fill all the blanks
                 $('[data-fill]').each(function(index) {
                     $(this).text(picks[index][Math.floor(Math.random() * picks[index].length)]);
                 });
-                
+
                 // Set proper a/an cases
                 $('[data-fix]').each(function() {
                     var $this      = $(this);
@@ -113,6 +152,16 @@
                     update = his.indexOf(filled) > -1 ? 'his' : 'her';
                 }
                 $('[data-update]').text(update);
+
+                ga('send', 'event', 'Pitch', 'generate', 'Launch');
+            }
+
+            $(document).ready(function() {
+                generate();
+
+                $('body').on('click','.content__button',function() {
+                    generate();
+                });
             });
         </script>
 
