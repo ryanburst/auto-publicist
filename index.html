@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Auto-Publicist</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <style>
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+            }
+            body {
+                font-family: 'Raleway', sans-serif;
+            }
+            .app {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+                flex-direction: column;
+                align-items: center;
+                box-sizing: border-box;
+            }
+            .app__header {
+                font-size: 42px;
+            }
+            .app__content {
+                max-width: 650px;
+                flex-grow: 1;
+                font-size: 34px;
+            }
+            .app__footer {
+                font-size: 12px;
+                line-height: 1.5;
+                color: #aaa;
+                text-align: center;
+            }
+            a {
+                color: #64B5F6;
+            }
+            [data-upper] {
+                text-transform: capitalize;
+            }
+            @media all (min-width: 500px) {
+                .app__header {
+                    font-size: 42px;
+                }
+                .app__content {
+                    font-size: 22px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app">
+            <h1 class="app__header">Auto-Publicist</h1>
+            <p class="app__content"><span data-fix data-upper></span> <span data-fill></span> <span data-fill></span> about <span data-fix></span> <span data-fill></span> <span data-fill></span> <span data-fill></span> to <span data-fill></span> <span data-update></span> <span data-fill></span>.</p>
+            <p class="app__footer">App Copyright &copy; 2018 Ryan Burst<br />Content via <a href="https://electricliterature.com/how-to-write-elevator-pitch-novel-publicity-infographic-a8ec74ecf7ce" target="_blank">Electric Literature</a></p>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+        <script>
+            var picks = [
+                ['edge-of-your-seat','keenly observed','lyrical','profound','erotic','inspiring','razor-sharp','heartrending','dream-like','darkly comic','uncompromising','courageous','compulsively readable','unflinching','fiercely honest','richly drawn','unforgettable','riveting','high-voltage','psycho-sexual','ridiculously funny','passionate','surreal','dystopian','hysterical','meditative'],
+                ['thriller','meditation','coming of age story','family drama','war epic','epistolatory novel','romance','tragedy','story','tour de force','comedy','noir','instant classic','fairy tale','autobiographical novel','romp','fictional memoir','trilogy','detective novel','page-turner','tragicomedy','murder mystery','novel in stories','historical novel','graphic novel','saga'],
+                ['depressed','wealthy','doomed','exuberant','agoraphobic','maladjusted','misanthropic','alcoholic','young','philosophical','hopelessly romantic','hyper-sexual','precocious','unlucky','quixotic','desperate','refugee','dissatisfied','bored','morally compromised','lovesick','drug-addicted','jilted','vengeful','overbearing'],
+                ["man's","orphan's","daughter's","mother's","adolescent's","soldier's","student's","window's","woman's","professor's","divorcée's","adventurer's","extended family's","child's","mistress's","dictator's","vampire's","ghost's","starship captain's","doctor's","writer's","private investigator's","couple's","coven's","murder detective's","octogenarian's"],
+                ['adventure','commitment','desire','devotion','dream','effort','strategy','plans','failure','inability','journey','mission','not-so-secret desire','quest','endeavor','secret longing','struggle','vacation','wish','expedition','plan','scheme','resolve','project','promise','battle'],
+                ['re-awaken','come to grips with','grapple with','understand','explore','accept','overcome','avenge','pursue','defend','undertake','discover','contemplate','transcend','withdraw from','avoid','betray','circumvent','confront','expose','give up','investigate','navigate','reconnect with','embrace','reconcile to'],
+                ['fear of spiders','adoption','traumatic childhood',"mother's death",'sexless marriage','Oedipal complex','feminism','religious upbringing','political apathy','biological clock','ugly divorce',"writer's block",'toxic friendships','eating disorder','own birth','cancer','23andMe results','privilege','untimely death','social media addiction','spiritual evolution','secret second family','sexual awakening','amazon reviews',"father's murder",'disinheritance']
+
+            ];
+            var his = ["man's"];
+            var her = ["daughter's","mother's","widow's","woman's","mistress's"];
+
+            $(document).ready(function() {
+                $('[data-fill]').each(function(index) {
+                    $(this).text(picks[index][Math.floor(Math.random() * picks[index].length)]);
+                });
+                $('[data-fix]').each(function() {
+                    var $this      = $(this);
+                    var nextLetter = $this.next().text().substring(0,1);
+                    var vowels     = ['a','e','i','o','u'];
+                    var result     = vowels.indexOf(nextLetter) > -1 ? 'an' : 'a';
+
+                    $this.text(result);
+                });
+
+
+                var filled = $('[data-fill]:eq(3)').text();
+                var update = 'their';
+                if (his.indexOf(filled) > -1 || her.indexOf(filled) > -1) {
+                    update = his.indexOf(filled) > -1 ? 'his' : 'her';
+                }
+
+                $('[data-update]').text(update);
+            });
+        </script>
+
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    </body>
+</html>
